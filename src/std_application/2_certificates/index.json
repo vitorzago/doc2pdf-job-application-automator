@@ -1,0 +1,25 @@
+{
+  "German": { "default_list": ["undergraduate_degree_certificate_de.pdf",
+                               "graduate_degree_certificate_de.pdf",
+                               "language_certificates.pdf",
+                               "scholarship.pdf"],
+    "database":[
+    {
+      "name": "Bachelorsdiplom",
+      "filename": "undergraduate_degree_certificate_de.pdf"
+    },
+    {
+      "name": "Mastersdiplom",
+      "filename": "graduate_degree_certificate_de.pdf"
+    },
+    {
+      "name":"Sprachzeugnisse",
+      "filename": "language_certificates.pdf"
+    },
+    {
+      "name": "Stipendien",
+      "filename": "scholarship.pdf"
+    }
+  ]
+}
+}

@@ -4,19 +4,21 @@ from datetime import datetime
 import json
 import copy
 
-from PyPDF2 import PdfFileReader
 import PyPDF2
 import docx
 import docx2pdf
 from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
+#from .elem import Person, Organization
+import elem
+import documents as docs
 
 # References
 # PDF Editing : https://caendkoelsch.wordpress.com/2019/05/10/merging-multiple-pdfs-into-a-single-pdf/
 # Word Editing: https://tech-cookbook.com/2019/10/21/how-to-work-with-docx-in-python/
 
-STD_DIR = os.path.join(os.getcwd(),
+STD_DIR = os.path.join(os.getcwd(), "src",
                        "std_application")
 STD_DIR_CURRICULUM_VITAE = os.path.join(STD_DIR, "1_curriculum_vitae")
 STD_DIR_CERTIFICATES = os.path.join(STD_DIR, "2_certificates")
@@ -26,53 +28,9 @@ STD_APPLICATION_PHOTO = os.path.join(STD_DIR, "max_mustermann.png")
 
 MAIN_DIR = os.getcwd()
 
-class Organization:
 
-    def __init__(self,
-                 name,
-                 name_abbreviation,
-                 address,
-                 postcode,
-                 city):
-        self.name = name
-        self.name_abbreviation = name_abbreviation
-        self.address = address
-        self.postcode = postcode
-        self.city = city
 
-class Document:
-    def __init__(self):
-        pass
 
-class CurriculumVitae(Document):
-    def __init__(self):
-        pass
-
-class MotivationLetter(Document):
-    def __init__(self):
-        pass
-
-class Person:
-
-    def __init__(self,
-                 name = None,
-                 gender = None,
-                 address = None,
-                 postcode = None,
-                 city = None,
-                 telephone_number = None,
-                 email_address = None):
-        self.name = name
-        if self.name is not None:
-            self.surname = name.split()[-1]
-        else:
-            self.surname = None
-        self.gender = gender
-        self.address = address
-        self.postcode = postcode
-        self.city = city
-        self.telephone_number = telephone_number
-        self.email_address = email_address
 
 class Field:
 
@@ -82,28 +40,6 @@ class Field:
         self.identifier = identifier
         self.style = style
 
-class Certificate:
-
-    def __init__(self, pdf_file):
-        self.filename = pdf_file
-        self.dir = STD_DIR_CERTIFICATES
-        self.filepath = os.path.join(self.dir, self.filename)
-        self.indices = os.path.join(self.dir, "index.json")
-        self.number_of_pages = self.get_number_of_pages()
-
-    def get_number_of_pages(self):
-        pdf = PdfFileReader(open(self.filepath, 'rb'))
-        return pdf.getNumPages()
-
-    def get_name(self, language):
-        json_file = open(self.indices,)
-        indices = json.load(json_file)
-        files = [values for key, values in indices.items() if key == language][0]["database"]
-        try:
-            self.name = [parameters["name"] for parameters in files if parameters["filename"] == self.filename][0]
-        except:
-            print(self.filename)
-            ValueError("Above file is not in the incides file.")
 
 class Job:
 
@@ -435,7 +371,7 @@ class JobApplicationGerman(JobApplication):
         self.database_certificates = []
         for file in os.listdir(STD_DIR_CERTIFICATES):
                 if file.endswith(".pdf"):
-                    this_certificate = Certificate(file)
+                    this_certificate = docs.Certificate(file)
                     this_certificate.get_name(language="German")
                     self.database_certificates.append({"name": this_certificate.name,
                                                        "number_of_pages": this_certificate.number_of_pages,
@@ -456,7 +392,7 @@ if __name__ == '__main__':
     factory.register_builder("English", JobApplicationEnglish)
     factory.register_builder("German", JobApplicationGerman)
 
-    me = Person(name="Max Mustermann",
+    me = elem.Person(name="Max Mustermann",
                 gender="Male",
                 address="Musterstraße 12",
                 postcode="12345",
@@ -464,10 +400,10 @@ if __name__ == '__main__':
                 telephone_number="01234 5789",
                 email_address="max.mustermann@bewerbung.co")
 
-    their_contact_person = Person(name="Musterfrau",
+    their_contact_person = elem.Person(name="Musterfrau",
                                   gender="Female")
 
-    their_organization = Organization(name="Musterfirma GmbH",
+    their_organization = elem.Organization(name="Musterfirma GmbH",
                                       name_abbreviation="Musterfima GmbH",
                                       address="Musterstraße 11",
                                       postcode="12345",
