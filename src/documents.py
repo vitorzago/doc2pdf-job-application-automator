@@ -9,19 +9,31 @@ STD_DIR_CURRICULUM_VITAE = os.path.join(STD_DIR, "1_curriculum_vitae")
 STD_DIR_CERTIFICATES = os.path.join(STD_DIR, "2_certificates")
 STD_FILE_CERTICATES_INDICES = os.path.join(STD_DIR_CERTIFICATES, "index.json")
 STD_APPLICATION_PHOTO = os.path.join(STD_DIR, "max_mustermann.png")
+
 class Document:
     def __init__(self):
         pass
 
 class CurriculumVitae(Document):
+    ''' Curriculum Vitae elaborates in a concise
+    and time marked structure the relevant work experiences and
+    formal education of the
+
+
+    '''
     def __init__(self):
         pass
 
 class MotivationLetter(Document):
+    ''' Formal letter explaining in details why
+    the candidate is ideal for this position '''
+
     def __init__(self):
         pass
 
 class Certificate:
+    '''Certificate as proof of any job experiences, language skills,
+    awards or scholarships'''
 
     def __init__(self, pdf_file):
         self.filename = pdf_file
