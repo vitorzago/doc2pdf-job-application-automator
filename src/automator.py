@@ -2,7 +2,6 @@ import os
 import locale
 from datetime import datetime
 import json
-import copy
 
 import PyPDF2
 import docx
