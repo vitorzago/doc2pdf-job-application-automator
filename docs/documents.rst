@@ -1,9 +1,6 @@
-Documentation
+Documentations
 ================
-
-The 
-=========================
-.. automodule:: documents
+.. automodule:: documents.CurriculumVitae
    :members:
    :undoc-members:
    :show-inheritance:

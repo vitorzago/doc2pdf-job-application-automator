@@ -7,13 +7,13 @@ Welcome to DOC2PDF Job Application Automator's documentation!
 =============================================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
    install
-
-
+   automator
    documents
+   elem
 
 Indices and tables
 ==================
