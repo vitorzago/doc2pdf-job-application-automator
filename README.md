@@ -3,4 +3,4 @@ This package easies the set up of .doc to .pdf files in multiple languages using
 
 Read The Docs
 ==================
-Link: https://doc2pdf-job-application-automator.readthedocs.io/en/latest/
+Link: [ReadTheDocs](https://doc2pdf-job-application-automator.readthedocs.io/en/latest/)
