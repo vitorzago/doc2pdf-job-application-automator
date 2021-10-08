@@ -17,9 +17,7 @@ class Document:
 class CurriculumVitae(Document):
     ''' Curriculum Vitae elaborates in a concise
     and time marked structure the relevant work experiences and
-    formal education of the
-
-
+    formal education of the candidate
     '''
     def __init__(self):
         pass
